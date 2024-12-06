@@ -62,7 +62,7 @@ jobs:
         
         # Call the DALL·E API
         RESPONSE=$(curl -s https://api.openai.com/v1/images/generations \
-          -H "Authorization: Bearer $API_KEY" \
+          -H "Authorization: Bearer ${{secrets.OPENAI_API_KEY}}" \
           -H "Content-Type: application/json" \
           -d '{
             "prompt": "'"$PROMPT"'",
