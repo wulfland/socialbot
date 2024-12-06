@@ -13,7 +13,7 @@ jobs:
     - name: Get Joke
       run: |
         JSON_PAYLOAD=$(jq -n \
-          --arg system_content "You are a comedian. The auience is software developers and DevOps engineers. Tell us a joke that will make us laugh loud." \
+          --arg system_content "Tell me a really funny and unique joke for software developers and DevOps engineers. Make sure it's clever, uses relevant programming or DevOps terminology, and is fresh and original." \
           --arg user_content "" \
           '{
             "model": "gpt-4o",
@@ -27,11 +27,11 @@ jobs:
                 "content": $user_content
               }
             ],
-            "temperature": 1,
-            "max_tokens": 256,
+            "temperature": 0.7,
+            "max_tokens": 60,
             "top_p": 1,
-            "frequency_penalty": 0,
-            "presence_penalty": 0
+            "frequency_penalty": 0.5,
+            "presence_penalty": 0.3
           }')
 
         RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
