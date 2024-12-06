@@ -49,5 +49,31 @@ jobs:
           -d "$JSON_PAYLOAD")
           
         echo "OpenAI Response: $RESPONSE"
+        
+        # Extract the joke from the response
+        JOKE=$(echo "$RESPONSE" | jq -r '.choices[0].text' | sed '/^\s*$/d')
+        
+        # Print the joke
+        echo "Here's your joke:"
+        echo "$JOKE"
+        
+        # Define your image prompt
+        PROMPT="You are a instagram influencer and content creator for developers and engineers. Create a background image for the following joke: $JOKE"
+        
+        # Call the DALL·E API
+        RESPONSE=$(curl -s https://api.openai.com/v1/images/generations \
+          -H "Authorization: Bearer $API_KEY" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "prompt": "'"$PROMPT"'",
+            "n": 1,
+            "size": "1080x1920"
+          }')
+        
+        # Extract the URL of the generated image
+        IMAGE_URL=$(echo "$RESPONSE" | jq -r '.data[0].url')
+        
+        # Output the image URL
+        echo "Generated Image URL: $IMAGE_URL"
           
         
