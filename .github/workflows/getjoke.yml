@@ -52,6 +52,9 @@ jobs:
         
         # Extract the joke from the response
         JOKE=$(echo "$RESPONSE" | jq -r '.choices[0].message.content' | sed '/^\s*$/d')
+
+        # Remove newlines
+        JOKE=$(echo "$JOKE" | sed ':a;N;$!ba;s/\n/ /g')
         
         # Print the joke
         echo "Here's your joke:"
@@ -65,7 +68,7 @@ jobs:
           -H "Authorization: Bearer ${{secrets.OPENAI_API_KEY}}" \
           -H "Content-Type: application/json" \
           -d '{
-            "prompt": "'"${PROMPT//\"/\\\"}"'",
+            "prompt": "'"$PROMPT"'",
             "n": 1,
             "size": "1024x1024"
           }')
