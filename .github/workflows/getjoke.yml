@@ -13,7 +13,7 @@ jobs:
     - name: Get Joke
       run: |
         JSON_PAYLOAD=$(jq -n \
-          --arg system_content "I am a developer. Tell me a joke that I find really funny. Tell me a new joke every time I ask." \
+          --arg system_content "You are a comedian. The auience is software developers and DevOps engineers. Tell us a joke that will make us laugh loud." \
           --arg user_content "" \
           '{
             "model": "gpt-4o",
