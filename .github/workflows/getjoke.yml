@@ -16,7 +16,7 @@ jobs:
           --arg system_content "Tell me a really funny and unique joke for software developers and DevOps engineers. Make sure it's clever, uses relevant programming or DevOps terminology, and is fresh and original." \
           --arg user_content "" \
           '{
-            "model": "gpt-4o",
+            "model": "gpt-4",
             "messages": [
               {
                 "role": "system",
