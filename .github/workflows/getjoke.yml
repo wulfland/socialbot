@@ -27,11 +27,11 @@ jobs:
                 "content": $user_content
               }
             ],
-            "temperature": 0.7,
+            "temperature": 0.9,
             "max_tokens": 60,
             "top_p": 1,
-            "frequency_penalty": 0.5,
-            "presence_penalty": 0.3
+            "frequency_penalty": 0.8,
+            "presence_penalty": 0.5
           }')
 
         RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
