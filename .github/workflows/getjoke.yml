@@ -13,13 +13,13 @@ jobs:
     - name: Get Joke
       run: |
         # Array of random topics to add variety
-        topics=("debugging" "cloud infrastructure" "automation" "version control" "containers")
+        topics=("cloud infrastructure" "automation" "containers" "kubernetes")
         
         # Randomly select a topic
         RANDOM_TOPIC=${topics[$RANDOM % ${#topics[@]}]}
         
         # Create the prompt
-        PROMPT="Tell me a really funny and unique joke for software developers and DevOps engineers about ${RANDOM_TOPIC}. Make it clever, relevant to programming or DevOps, and fresh every time."
+        PROMPT="Tell me a really funny and unique joke for DevOps engineers about ${RANDOM_TOPIC}. Make it clever, relevant to DevOps, and fresh every time."
         
         JSON_PAYLOAD=$(jq -n \
           --arg system_content "$PROMPT" \
@@ -66,7 +66,7 @@ jobs:
         # Define your image prompt
         #PROMPT="You are a instagram influencer and content creator for developers and engineers. Create a background image for the following joke: $JOKE"
 
-        PROMPT="A clean, futuristic background featuring a DevOps-themed concept with servers, clouds, automation gears, and ${RANDOM_TOPIC}."
+        PROMPT="A clean, futuristic background with no text featuring DevOps-themed concept with ${RANDOM_TOPIC}."
         
         # Call the DALL·E API
         RESPONSE=$(curl -s https://api.openai.com/v1/images/generations \
