@@ -12,8 +12,17 @@ jobs:
     steps:
     - name: Get Joke
       run: |
+        # Array of random topics to add variety
+        topics=("debugging" "cloud infrastructure" "automation" "version control" "containers")
+        
+        # Randomly select a topic
+        RANDOM_TOPIC=${topics[$RANDOM % ${#topics[@]}]}
+        
+        # Create the prompt
+        PROMPT="Tell me a really funny and unique joke for software developers and DevOps engineers about ${RANDOM_TOPIC}. Make it clever, relevant to programming or DevOps, and fresh every time."
+        
         JSON_PAYLOAD=$(jq -n \
-          --arg system_content "Tell me a really funny and unique joke for software developers and DevOps engineers. Make sure it's clever, uses relevant programming or DevOps terminology, and is fresh and original." \
+          --arg system_content $PROMPT \
           --arg user_content "" \
           '{
             "model": "gpt-4",
