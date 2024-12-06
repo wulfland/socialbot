@@ -1,0 +1,43 @@
+name: Get Joke
+
+on:
+  workflow_dispatch:
+    
+
+jobs:
+  get-joke:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Label issue
+      run: |
+        JSON_PAYLOAD=$(jq -n \
+          --arg system_content "You are a developer. I am a developer. Tell me a joke that is really funny but not too long." \
+          --arg user_content "" \
+          '{
+            "model": "gpt-4",
+            "messages": [
+              {
+                "role": "system",
+                "content": $system_content
+              },
+              {
+                "role": "user",
+                "content": $user_content
+              }
+            ],
+            "temperature": 1,
+            "max_tokens": 256,
+            "top_p": 1,
+            "frequency_penalty": 0,
+            "presence_penalty": 0
+          }')
+
+        RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Bearer ${{secrets.OPENAI_API_KEY}}" \
+          -d "$JSON_PAYLOAD")
+          
+        echo "OpenAI Response: $RESPONSE"
+          
+        
