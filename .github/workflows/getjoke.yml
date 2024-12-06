@@ -64,7 +64,9 @@ jobs:
         echo "$JOKE"
         
         # Define your image prompt
-        PROMPT="You are a instagram influencer and content creator for developers and engineers. Create a background image for the following joke: $JOKE"
+        #PROMPT="You are a instagram influencer and content creator for developers and engineers. Create a background image for the following joke: $JOKE"
+
+        PROMPT="A clean, futuristic background featuring a DevOps-themed concept with servers, clouds, automation gears, and ${RANDOM_TOPIC}."
         
         # Call the DALL·E API
         RESPONSE=$(curl -s https://api.openai.com/v1/images/generations \
