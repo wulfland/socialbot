@@ -55,6 +55,9 @@ jobs:
 
         # Remove newlines
         JOKE=$(echo "$JOKE" | sed ':a;N;$!ba;s/\n/ /g')
+
+        # Escape double quotes
+        JOKE=$(echo "$JOKE" | sed 's/"/\\"/g')
         
         # Print the joke
         echo "Here's your joke:"
