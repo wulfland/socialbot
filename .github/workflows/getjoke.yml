@@ -22,7 +22,7 @@ jobs:
         PROMPT="Tell me a really funny and unique joke for software developers and DevOps engineers about ${RANDOM_TOPIC}. Make it clever, relevant to programming or DevOps, and fresh every time."
         
         JSON_PAYLOAD=$(jq -n \
-          --arg system_content $PROMPT \
+          --arg system_content "$PROMPT" \
           --arg user_content "" \
           '{
             "model": "gpt-4",
