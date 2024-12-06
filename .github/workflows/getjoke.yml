@@ -51,7 +51,7 @@ jobs:
         echo "OpenAI Response: $RESPONSE"
         
         # Extract the joke from the response
-        JOKE=$(echo "$RESPONSE" | jq -r '.choices[0].content' | sed '/^\s*$/d')
+        JOKE=$(echo "$RESPONSE" | jq -r '.choices[0].message.content' | sed '/^\s*$/d')
         
         # Print the joke
         echo "Here's your joke:"
